@@ -29,8 +29,6 @@ public class breadth implements PathingStrategy{
         while (!nodeQueue.isEmpty()) {
             Node current = nodeQueue.remove(0);
 
-            System.out.println(current.getPosition().getX() + " , " + current.getPosition().getY());
-
             if (this.grid[current.getPosition().getY()][current.getPosition().getX()] == PathMain.GridValues.GOAL)
             {
                 last = current;
