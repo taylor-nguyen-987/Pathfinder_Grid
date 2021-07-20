@@ -17,7 +17,6 @@ public class astar implements PathingStrategy{
     //A Star iterative
     public boolean computePath(Point pos) {
 
-
         //Comparator<Node> fcomp = (n1, n2) -> (int) ((n2.getfScore()) -
         //        (n1.getfScore()));
 
@@ -29,18 +28,15 @@ public class astar implements PathingStrategy{
         boolean found = false;
 
         Node start = new Node(pos, null);
-        //Point end = new Point(14, 7);
         start.sethScore(manhattanDistance(pos, PathMain.end)); //heuristic distance
         start.setgScore(0); //set gScore to be 0
 
         openSet.add(start);
 
 
-        while (openSet.size() != 0 && found == false) {
+        while (openSet.size() != 0) {
 
             Node current = openSet.poll(); //removes and retrieves the node with the lowest fScore from the openList
-
-            //System.out.println(current.getPosition().hashCode());
 
             //System.out.println("x:  " + current.getPosition().getX() + " y: " + current.getPosition().getY());
             if (this.grid[current.getPosition().getY()][current.getPosition().getX()] == PathMain.GridValues.GOAL) {
@@ -48,6 +44,7 @@ public class astar implements PathingStrategy{
                     this.path.add(p);
                 }
                 found = true;
+                break;
             }
 
             this.grid[current.getPosition().getY()][current.getPosition().getX()] = PathMain.GridValues.SEARCHED; //mark as searched

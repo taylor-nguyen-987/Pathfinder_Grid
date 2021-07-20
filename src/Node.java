@@ -40,9 +40,9 @@ public class Node {
 
     public List<Node> getNeighbors() { //does not filter out obstacles or searched blocks
         Node rightN = new Node(new Point(this.position.getX() + 1, this.position.getY()), this);
+        Node bottomN = new Node(new Point(this.position.getX(), this.position.getY() + 1), this);
         Node topN = new Node(new Point(this.position.getX(), this.position.getY() - 1), this);
         Node leftN = new Node(new Point(this.position.getX() - 1, this.position.getY()), this);
-        Node bottomN = new Node(new Point(this.position.getX(), this.position.getY() + 1), this);
 
         ArrayList<Node> neighbors = new ArrayList<>();
         neighbors.add(rightN);

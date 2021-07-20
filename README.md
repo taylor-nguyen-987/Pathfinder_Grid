@@ -20,9 +20,12 @@ Or simply compiling and running with an IDE
 
 # Actions
 
+Click on a tile that is not an obstacle to set the start. (bird) \
+Click on another tile that is not an obstacle to set the goal. (nest) \
+
 Press "d" for Depth-First Search. \
 Press "b" for Breadth-First Search. \
 Press "a" for A* Search. 
 
 Press "p" to illustrate the path. \
-Press "c" to clear the board.
+Press "c" to clear the board and reset the start and goal.

@@ -11,7 +11,6 @@ public class breadth implements PathingStrategy{
         this.grid = grid;
         this.path = path;
     }
-
     public List<Point> getPath() {
         return this.path;
     }
@@ -27,13 +26,16 @@ public class breadth implements PathingStrategy{
 
         nodeQueue.add(new Node(pos, null));
 
-        while (!nodeQueue.isEmpty() && found == false) {
+        while (!nodeQueue.isEmpty()) {
             Node current = nodeQueue.remove(0);
+
+            System.out.println(current.getPosition().getX() + " , " + current.getPosition().getY());
 
             if (this.grid[current.getPosition().getY()][current.getPosition().getX()] == PathMain.GridValues.GOAL)
             {
                 last = current;
                 found = true;
+                break;
             }
             else {
                 if (this.grid[current.getPosition().getY()][current.getPosition().getX()] != PathMain.GridValues.SEARCHED) //if the current has not already been searched
@@ -52,10 +54,8 @@ public class breadth implements PathingStrategy{
             }
         }
 
-        for (Point p: reconstruct_path(last))
-        {
-            this.path.add(p);
-        }
+        this.path = reconstruct_path(last);
+
         return found;
 
     }

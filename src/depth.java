@@ -13,6 +13,7 @@ public class depth implements PathingStrategy {
     public List<Point> getPath() {
         return this.path;
     }
+
     //DFS recursive
     public boolean computePath(Point pos) { //given the starting point as the parameter
         Point rightN = new Point(pos.getX() +1, pos.getY());

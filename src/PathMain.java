@@ -11,7 +11,7 @@ public class PathMain extends PApplet{
 
     private static final int TILE_SIZE = 32;
 
-    public enum GridValues { BACKGROUND, OBSTACLE, GOAL, SEARCHED };
+    public enum GridValues {BEGIN, BACKGROUND, OBSTACLE, GOAL, SEARCHED };
 
     private GridValues[][] grid;
     private static final int ROWS = 15;
@@ -19,6 +19,7 @@ public class PathMain extends PApplet{
 
     private boolean drawPath = false;
     private int count = 0;
+    private int mouse;
 
     private Point begin;
     public static Point end;
@@ -30,8 +31,8 @@ public class PathMain extends PApplet{
     public void setup()
     {
         path = new LinkedList<>();
-        begin = new Point(3, 7);
-        end = new Point(14, 7);
+        //begin = new Point(3, 7);
+        //end = new Point(14, 7);
 
         start = loadImage("images/bird.png");
         obstacle = loadImage("images/oak.png");
@@ -118,17 +119,17 @@ public class PathMain extends PApplet{
         }
 
 
-        grid[end.getY()][end.getX()] = GridValues.GOAL;
+        if (end != null) {
+            grid[end.getY()][end.getX()] = GridValues.GOAL;
+        }
     }
 
     /* runs repeatedly */
     public void draw()
     {
         draw_grid();
-        image(start, begin.getX()* TILE_SIZE, begin.getY()* TILE_SIZE);
 
         draw_path(this.path);
-
     }
 
     private void draw_grid()
@@ -171,6 +172,9 @@ public class PathMain extends PApplet{
     {
         switch (grid[row][col])
         {
+            case BEGIN:
+                image(start, col * TILE_SIZE, row * TILE_SIZE);
+                break;
             case BACKGROUND:
                 fill(211, 211, 211);
                 rect(col * TILE_SIZE,
@@ -191,9 +195,33 @@ public class PathMain extends PApplet{
         }
     }
 
+    public void mousePressed()
+    {
+        Point pressed = mouseToPoint(mouseX, mouseY);
+
+        if (grid[pressed.getY()][pressed.getX()] == GridValues.BACKGROUND && (mouse == 0) && begin == null) {
+            grid[pressed.getY()][pressed.getX()] = GridValues.BEGIN;
+            mouse++;
+            begin = new Point(pressed.getX(), pressed.getY());
+        }
+        else if (grid[pressed.getY()][pressed.getX()] == GridValues.BACKGROUND && (mouse == 1) && end == null) {
+            grid[pressed.getY()][pressed.getX()] = GridValues.GOAL;
+            mouse=0;
+            end = new Point(pressed.getX(), pressed.getY());
+        }
+
+        redraw();
+
+    }
+
+    private Point mouseToPoint(int x, int y)
+    {
+        return new Point(mouseX/TILE_SIZE, mouseY/TILE_SIZE);
+    }
+
     public void keyPressed()
     {
-        if (key == 'd') //DFS
+        if (key == 'd' && begin != null && end != null) //DFS
         {
             drawPath = false; //switches off drawPath
             count = 0; // resets counter
@@ -208,9 +236,10 @@ public class PathMain extends PApplet{
 
             this.path = searching.getPath();
             Collections.reverse(this.path); //this path is originally backwards, so we need to reverse it
+
         }
 
-        else if (key == 'b') //BFS
+        else if (key == 'b' && begin != null && end != null) //BFS
         {
             drawPath = false; //switches off drawPath
             count = 0;
@@ -225,7 +254,7 @@ public class PathMain extends PApplet{
 
         }
 
-        else if (key == 'a') //A*
+        else if (key == 'a' && begin != null && end != null) //A*
         {
             drawPath = false; //switches off drawPath
             count = 0;
@@ -250,6 +279,9 @@ public class PathMain extends PApplet{
         {
             drawPath = false;
             count = 0; // reset counter
+
+            begin = null;
+            end = null;
 
             path.clear(); //clears Path
             initialize_grid(grid);
