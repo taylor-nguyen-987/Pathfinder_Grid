@@ -2,11 +2,10 @@
 
 A graphical user interface (GUI) to visualize some pathfinding algorithms! 
 
-# Installation
-
-Make sure to install the processing library. \
-Link: https://processing.org/download/ \
-(the processing file should be placed in the lib folder)
+# Tools
+Java 14
+Processing library
+https://processing.org/download/
 
 # Compile and Run
 
