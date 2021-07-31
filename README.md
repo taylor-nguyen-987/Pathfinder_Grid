@@ -3,8 +3,8 @@
 A graphical user interface (GUI) to visualize some pathfinding algorithms! 
 
 # Tools
-Java 14
-Processing library
+Java 14 \
+Processing library \
 https://processing.org/download/
 
 # Compile and Run
