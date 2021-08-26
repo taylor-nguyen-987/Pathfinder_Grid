@@ -289,7 +289,7 @@ public class PathMain extends PApplet{
 
     }
 
-    public static boolean withinBounds(Point p, PathMain.GridValues[][] grid) //use an interface
+    public static boolean withinBounds(Point p, PathMain.GridValues[][] grid)
     {
         return p.getY() >= 0 && p.getY() < grid.length &&
                 p.getX() >= 0 && p.getX() < grid[0].length;
@@ -301,5 +301,3 @@ public class PathMain extends PApplet{
     }
 
 }
-
-//<div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>

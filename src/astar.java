@@ -38,7 +38,6 @@ public class astar implements PathingStrategy{
 
             Node current = openSet.poll(); //removes and retrieves the node with the lowest fScore from the openList
 
-            //System.out.println("x:  " + current.getPosition().getX() + " y: " + current.getPosition().getY());
             if (this.grid[current.getPosition().getY()][current.getPosition().getX()] == PathMain.GridValues.GOAL) {
                 for (Point p: reconstruct_path(current)) {
                     this.path.add(p);
@@ -55,7 +54,7 @@ public class astar implements PathingStrategy{
                         this.grid[neighbor.getPosition().getY()][neighbor.getPosition().getX()] != PathMain.GridValues.OBSTACLE &&
                         this.grid[neighbor.getPosition().getY()][neighbor.getPosition().getX()] != PathMain.GridValues.SEARCHED) { //check neighbors if valid
 
-                    //Note that when the neighbor has been searched, it is in the closed list as well!
+                    //Note that when the neighbor has been searched, it is in the closed set as well!
 
                     double new_gScore = current.getgScore() + 1; //distance from current node to start + distance from current node to adj node
 
@@ -90,7 +89,7 @@ public class astar implements PathingStrategy{
 
     private static List<Point> reconstruct_path(Node last) {
         List<Point> path = new ArrayList<>();
-        Node current = last; //might not include the last node
+        Node current = last;
         path.add(last.getPosition());
         while(current.getPriorNode() != null) {
             path.add(current.getPriorNode().getPosition());

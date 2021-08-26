@@ -60,7 +60,7 @@ public class breadth implements PathingStrategy{
 
     private static List<Point> reconstruct_path(Node end) {
         List<Point> path = new ArrayList<>();
-        Node current = end; //might not include the last node
+        Node current = end;
         path.add(end.getPosition());
         while(current.getPriorNode() != null) {
             path.add(current.getPriorNode().getPosition());

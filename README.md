@@ -1,30 +1,28 @@
 # About
 
-A graphical user interface (GUI) to visualize some pathfinding algorithms! 
+This is a graphical user interface (GUI) to visualize a few pathfinding algorithms. \
+Users will be able to set their own starting and ending points by clicking on available tiles.
+
+If you prefer to view this project on the browser, check out its Javascript version in the link below. \
+https://taylor-nguyen-987.github.io/pf-visualizer/ 
 
 # Tools
 Java 14 \
-Processing library \
+Processing \
 https://processing.org/download/
 
-# Compile and Run
-
-Compile: \
-<code> javac PathMain.java </code> 
-
-Run: \
-<code> java PathMain </code>
-
-Or simply compiling and running with an IDE
-
 # Actions
+<em>Note that these actions are not applicable to the Javascript version of this project. </em>
 
-Click on a tile that is not an obstacle to set the start. (bird) \
-Click on another tile that is not an obstacle to set the goal. (nest) \
+1) Click a tile that is not a tree to create the bird. (starting point) 
+2) Click another tile that is not a tree to create the nest. (ending point) 
 
-Press "d" for Depth-First Search. \
+3) Press "d" for Depth-First Search. \
+or \
 Press "b" for Breadth-First Search. \
+or \
 Press "a" for A* Search. 
 
-Press "p" to illustrate the path. \
-Press "c" to clear the board and reset the start and goal.
+4) Press "p" to illustrate the path. 
+5) Press "c" to clear the board.
+6) Repeat steps 1-4 to try a new searching algorithm
