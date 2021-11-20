@@ -268,6 +268,20 @@ public class PathMain extends PApplet{
             this.path = searching.getPath();
         }
 
+        else if (key == 'k' && begin != null && end != null)
+        {
+            drawPath = false; //switches off drawPath
+            count = 0;
+
+            path.clear();
+            initialize_grid(grid);
+
+            dijkstra searching = new dijkstra(grid, path);
+            searching.computePath(begin);
+
+            this.path = searching.getPath();
+        }
+
         else if (key == 'p') //path
         {
             if (this.path.size() > 0) {

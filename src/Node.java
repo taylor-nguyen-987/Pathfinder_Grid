@@ -7,6 +7,7 @@ public class Node {
     private double gScore = Double.POSITIVE_INFINITY; //set node's gScore to be infinity
     private double hScore = Double.POSITIVE_INFINITY;
     private double fScore = Double.POSITIVE_INFINITY;
+    private double dist = Double.POSITIVE_INFINITY;
 
     public Node(Point position, Node PriorNode) {
         this.position=position;
@@ -19,6 +20,9 @@ public class Node {
     public Node getPriorNode() {
         return this.PriorNode;
     }
+    public void setPriorNode(Node Prior) {
+        this.PriorNode = Prior;
+    }
 
     public double getgScore() {return this.gScore;}
     public double gethScore() {
@@ -26,6 +30,9 @@ public class Node {
     }
     public double getfScore() {
         return this.fScore;
+    }
+    public double getdist() {
+        return this.dist;
     }
     public void setgScore(double gScore) {
         this.gScore = gScore;
@@ -35,6 +42,9 @@ public class Node {
     }
     public void setfScore(double fScore) {
         this.fScore = fScore;
+    }
+    public void setdist(double dist) {
+        this.dist = dist;
     }
 
 
